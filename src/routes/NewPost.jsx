@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'; // 이렇게 정확하게 추가해야 합니다.
 import classes from './NewPost.module.css';
 import Modal from '../components/Modal';
 
-function NewPost({onCancel, onAddPost}) {
+function NewPost({onAddPost}) {
   const [enteredBody, setEnteredBody]=useState('');
   const [enteredAuthor, setEnteredAuthor]=useState('');
 
@@ -21,8 +22,7 @@ function NewPost({onCancel, onAddPost}) {
         body: enteredBody,
         author: enteredAuthor
       };
-      onAddPost(postData);
-      onCancel();
+      onAddPost(postData);      
   }
 
   return (
@@ -37,7 +37,9 @@ function NewPost({onCancel, onAddPost}) {
           <input type="text" id="name" required onChange={authorChangeHandler}/>
         </p>
         <p className={classes.actions}>
-          <button type="button" onClick={onCancel}>Cancel</button>
+          <Link to=".." type="button">
+            Cancel
+          </Link>
           <button>Submit</button> {/* button 태그의 기본 타입은 submit */}
         </p>
       </form>
@@ -46,8 +48,7 @@ function NewPost({onCancel, onAddPost}) {
 }
 // PropTypes를 사용하여 prop 타입을 정의합니다.
 NewPost.propTypes = {
-  onCancel: PropTypes.func.isRequired,  // 함수 타입이며 필수적으로 전달되어야 함을 명시합니다.
-  onAddPost: PropTypes.func.isRequired
+  onAddPost: PropTypes.func.isRequired // 함수 타입이며 필수적으로 전달되어야 함을 명시합니다.
 };
 
 export default NewPost;
