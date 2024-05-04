@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types'; // 이렇게 정확하게 추가해야 합니다.
 import classes from './NewPost.module.css';
+import Modal from '../components/Modal';
 
 function NewPost({onCancel, onAddPost}) {
   const [enteredBody, setEnteredBody]=useState('');
@@ -25,20 +26,22 @@ function NewPost({onCancel, onAddPost}) {
   }
 
   return (
-    <form className={classes.form} onSubmit={submitHandler}>
-      <p>
-        <label htmlFor="body">Text</label>
-        <textarea id="body" required rows={3} onChange={bodyChangeHandler}/>
-      </p>
-      <p>
-        <label htmlFor="name">Your name</label>
-        <input type="text" id="name" required onChange={authorChangeHandler}/>
-      </p>
-      <p className={classes.actions}>
-        <button type="button" onClick={onCancel}>Cancel</button>
-        <button>Submit</button> {/* button 태그의 기본 타입은 submit */}
-      </p>
-    </form>
+    <Modal>
+      <form className={classes.form} onSubmit={submitHandler}>
+        <p>
+          <label htmlFor="body">Text</label>
+          <textarea id="body" required rows={3} onChange={bodyChangeHandler}/>
+        </p>
+        <p>
+          <label htmlFor="name">Your name</label>
+          <input type="text" id="name" required onChange={authorChangeHandler}/>
+        </p>
+        <p className={classes.actions}>
+          <button type="button" onClick={onCancel}>Cancel</button>
+          <button>Submit</button> {/* button 태그의 기본 타입은 submit */}
+        </p>
+      </form>
+    </Modal>
   );
 }
 // PropTypes를 사용하여 prop 타입을 정의합니다.
