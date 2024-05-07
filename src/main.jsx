@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import Posts, {loader as postsLoader} from './routes/Posts.jsx'
+import NewPost, {action as newPostAction} from './routes/NewPost.jsx'
 import './index.css'
-import NewPost from './routes/NewPost.jsx'
 import RootLayout from './routes/RootLayout.jsx'
 
 const router = createBrowserRouter([
@@ -16,10 +16,10 @@ const router = createBrowserRouter([
         loader: postsLoader,
         children:[
           { path: '/create-post', 
-          element:<NewPost />}],
-        },        
-      ],
-    },
+          element:<NewPost />, action: newPostAction }]
+        }        
+      ]
+    }
 ] );
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
